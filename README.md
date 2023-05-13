@@ -16,11 +16,11 @@ We implement a prototype of FaultyRank on Lustre and compare it with Lustre’s 
 ```
 
 # Table of Contents
-[Directory Structure](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#directory-structure)  
-[Getting Started](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#getting-started)  
-[Design and Implementation](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#design-and-implementation)  
-[Test Experiment on a Pre-built Graph](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#test-experiment-on-a-pre-built-graph)  
-[Contact](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#contact)
+[Directory Structure](https://github.com/DIR-LAB/FaultyRank#directory-structure)  
+[Getting Started](https://github.com/DIR-LAB/FaultyRank#getting-started)  
+[Design and Implementation](https://github.com/DIR-LAB/FaultyRank#design-and-implementation)  
+[Test Experiment on a Pre-built Graph](https://github.com/DIR-LAB/FaultyRank#test-experiment-on-a-pre-built-graph)  
+[Contact](https://github.com/DIR-LAB/FaultyRank#contact)
 
 # Directory Structure
 
