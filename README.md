@@ -16,11 +16,11 @@ We implement a prototype of FaultyRank on Lustre and compare it with Lustre’s 
 ```
 
 # Table of Contents
-[Directory Structure](https://github.com/DIR-LAB/FaultyRank#directory-structure)  
-[Getting Started](https://github.com/DIR-LAB/FaultyRank#getting-started)  
-[Design and Implementation](https://github.com/DIR-LAB/FaultyRank#design-and-implementation)  
-[Test Experiment on a Pre-built Graph](https://github.com/DIR-LAB/FaultyRank#test-experiment-on-a-pre-built-graph)  
-[Contact](https://github.com/DIR-LAB/FaultyRank#contact)
+[Directory Structure](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#directory-structure)  
+[Getting Started](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#getting-started)  
+[Design and Implementation](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#design-and-implementation)  
+[Test Experiment on a Pre-built Graph](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#test-experiment-on-a-pre-built-graph)  
+[Contact](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#contact)
 
 # Directory Structure
 
@@ -73,9 +73,11 @@ $ cd FaultyRank/client
 $ python fsaging.py -i [path_to_data/partitioned_data.txt]
 ```
 
+- Please follow [FileSystemAgingCustomized](https://github.com/DIR-LAB/FaultyRank/blob/main/client/README.md) for customization.
+
 ## Metadata Extraction
 Lustre metadata is stored in two places:
-1) The metadata like FID, LINKEA, etc are stored in the Extended Attributes (EA) of the local inodes.
+1) The metadata like FID, LINKEA and LOVEA are stored in the Extended Attributes (EA) of the local inodes.
 2) The DIRENT metadata between the directory and its sub-directories or files are stored as the content of the directory.
 
 To extract Lustre metadata, we scan the extended attributes of inodes and the contents of directories of all MDS and OSS servers in our network. A partial graph is created on each server.
@@ -94,6 +96,8 @@ $ make
 $ cd FaultyRank/scanner/oss_scanner
 $ make
 ```
+
+- Please follow [MetadataExtractionMDSCustomized](https://github.com/DIR-LAB/FaultyRank/tree/main/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/DIR-LAB/FaultyRank/blob/main/scanner/oss_scanner/README.md) for customization.
 
 ## Unified Graph Creation
 All the partial graphs created in the previous step are combined in one global graph on the main MDS server. The graph vertex IDs, which are 128-bit Lustre non-continuous FIDs are mapped to vertex GIDs from 0 to MAX_VERTEX_NUM-1.
@@ -154,3 +158,10 @@ $ ./faultyrank_core -N 4 -E 6 -f FaultyRank/data/test_graph.txt
 
 # Contact
 `@todo`
+
+
+
+
+
+
+
