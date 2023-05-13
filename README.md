@@ -163,8 +163,8 @@ $ ./faultyrank -N 4 -E 6 -f FaultyRank/data/test_graph.txt
 ```
 
 # Contact
-[Saisha Kamat (UNC Charlotte)](https://github.com/SaishaKamat)
-[Abdullah Al Raqibul Islam (UNC Charlotte)](https://github.com/biqar)
-[Dr. Dong Dai (UNC Charlotte)](https://daidong.github.io/)
+[Saisha Kamat (UNC Charlotte)](https://github.com/SaishaKamat)  
+[Abdullah Al Raqibul Islam (UNC Charlotte)](https://github.com/biqar)  
+[Dr. Dong Dai (UNC Charlotte)](https://daidong.github.io/)  
 [Dr. Mai Zheng(Iowa State University)](https://www.ece.iastate.edu/~mai/lab/dsl.html)
 
