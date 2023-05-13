@@ -109,7 +109,7 @@ $ cd FaultyRank/aggregator
 $ make
 ```
 
-- Next we note the number of Vertices and Edges in the global graph created.
+- Next we note the number of Vertices and Edges in the unified graph created.
 
 ``` diff
 $ cd FaultyRank/aggregator
