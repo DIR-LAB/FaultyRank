@@ -73,7 +73,7 @@ $ cd FaultyRank/client
 $ python fsaging.py -i [path_to_data/partitioned_data.txt]
 ```
 
-- Please follow [FileSystemAgingCustomized](https://github.com/DIR-LAB/FaultyRank/blob/main/client/README.md) for customization.
+- Please follow [FileSystemAgingCustomized](https://github.com/SaishaKamat/Git_Personal/blob/master/FaultyRank_Personal/client/README.md) for customization.
 
 ## Metadata Extraction
 Lustre metadata is stored in two places:
@@ -97,7 +97,7 @@ $ cd FaultyRank/scanner/oss_scanner
 $ make
 ```
 
-- Please follow [MetadataExtractionMDSCustomized](https://github.com/DIR-LAB/FaultyRank/tree/main/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/DIR-LAB/FaultyRank/blob/main/scanner/oss_scanner/README.md) for customization.
+- Please follow [MetadataExtractionMDSCustomized](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal/scanner/oss_scanner#readme) for customization.
 
 ## Unified Graph Creation
 All the partial graphs created in the previous step are combined in one global graph on the main MDS server. The graph vertex IDs, which are 128-bit Lustre non-continuous FIDs are mapped to vertex GIDs from 0 to MAX_VERTEX_NUM-1.
@@ -108,6 +108,7 @@ Move all the partial graphs created in the above step to `FaultyRank/aggregator`
 $ cd FaultyRank/aggregator
 $ make
 ```
+
 
 - Next we note the number of Vertices and Edges in the unified graph created.
 
@@ -122,16 +123,21 @@ $ wc -l final_graph.txt
 ```
 
 ## Run FaultyRank Algorithm
-Run FaultyRank algorithm on the global graph created in the previous step.
+Run FaultyRank algorithm on the unified graph created in the previous step.
 
 - Add the number of Vertices and Edges from the previous step and run FaultyRank algorithm.
 
 ```
 $ cd FaultyRank/core
-$ ./faultyrank_core -N (# of Vertices) -E (# of Edges) -f FaultyRank/aggregator/final_graph.txt
+$ ./faultyrank -N (# of Vertices) -E (# of Edges) -f /path_to_final_graph/final_graph.txt
 ```
 
-# Fault Injection
+- If there was a final_unfilled.txt file created in the previous step then run:
+
+```
+$ cd FaultyRank/core
+$ ./faultyrank -N (# of Vertices) -E (# of Edges) -f /path_to_final_graph/final_graph.txt -u /path_to_final_unfilled/final_unfilled.txt
+```
 
 
 # Test Experiment on a Pre-built Graph
@@ -157,11 +163,8 @@ $ ./faultyrank_core -N 4 -E 6 -f FaultyRank/data/test_graph.txt
 ```
 
 # Contact
-`@todo`
-
-
-
-
-
-
+[Saisha Kamat (UNC Charlotte)](https://github.com/SaishaKamat)
+[Abdullah Al Raqibul Islam (UNC Charlotte)](https://github.com/biqar)
+[Dr. Dong Dai (UNC Charlotte)](https://daidong.github.io/)
+[Dr. Mai Zheng(Iowa State University)](https://www.ece.iastate.edu/~mai/lab/dsl.html)
 
