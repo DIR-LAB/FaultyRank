@@ -159,7 +159,7 @@ Run FaultyRank on the test dataset.
 
 ``` diff
 $ cd FaultyRank/core
-$ ./faultyrank_core -N 4 -E 6 -f FaultyRank/data/test_graph.txt
+$ ./faultyrank -N 4 -E 6 -f FaultyRank/data/test_graph.txt
 ```
 
 # Contact
