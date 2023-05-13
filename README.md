@@ -154,5 +154,3 @@ $ ./faultyrank_core -N 4 -E 6 -f FaultyRank/data/test_graph.txt
 
 # Contact
 `@todo`
-
-
