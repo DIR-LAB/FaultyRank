@@ -3,7 +3,7 @@
 FaultyRank is a graph based Parallel Filesystem Checker. We model important Parallel Filesystem metadata into a graph and then generalize the logic of cross-checking and repairing into graph analytic tasks.
 We implement a prototype of FaultyRank on Lustre and compare it with Lustre’s default file system checker LFSCK.
 
-- You can learn more about FaultyRank in our [IPDPS 2023 paper](TBA.)
+- You can learn more about FaultyRank in our IPDPS 2023 paper (TBA.)
 - If you use this software please cite us:
 
 ```
