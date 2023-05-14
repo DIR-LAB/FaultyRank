@@ -3,27 +3,26 @@
 FaultyRank is a graph based Parallel Filesystem Checker. We model important Parallel Filesystem metadata into a graph and then generalize the logic of cross-checking and repairing into graph analytic tasks.
 We implement a prototype of FaultyRank on Lustre and compare it with Lustre’s default file system checker LFSCK.
 
-- You can learn more about FaultyRank in our [IPDPS 2023 paper](todo: url of paper).
+- You can learn more about FaultyRank in our [IPDPS 2023 paper](TBA.)
 - If you use this software please cite us:
 
 ```
 @inproceedings{faultyrank2023,
-  author={Kamat, Saisha and Islam, Abdullah Al Raqibul and Zheng, Mai  and Dai, Dong},
+  author={Kamat, Saisha and Islam, Abdullah Al Raqibul and Zheng, Mai and Dai, Dong},
   title={FaultyRank: A Graph-based Parallel File System Checker},
-  booktitle={2023 37th IEEE International Parallel & Distributed Processing Symposium (IPDPS)},
+  booktitle={37th IEEE International Parallel & Distributed Processing Symposium (IPDPS)},
   year={2023},
 }
 ```
 
 # Table of Contents
-[Directory Structure](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#directory-structure)  
-[Getting Started](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#getting-started)  
-[Design and Implementation](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#design-and-implementation)  
-[Test Experiment on a Pre-built Graph](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#test-experiment-on-a-pre-built-graph)  
-[Contact](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal#contact)
+[Directory Structure](https://github.com/DIR-LAB/FaultyRank#directory-structure)  
+[Getting Started](https://github.com/DIR-LAB/FaultyRank#getting-started)  
+[Design and Implementation](https://github.com/DIR-LAB/FaultyRank#design-and-implementation)  
+[Test Experiment on a Pre-built Graph](https://github.com/DIR-LAB/FaultyRank#test-experiment-on-a-pre-built-graph)  
+[Contact](https://github.com/DIR-LAB/FaultyRank#contact)
 
 # Directory Structure
-
 ```
 data/: test data
 client/: filesystem aging scripts (run from client nodes)
@@ -34,7 +33,7 @@ core/: implementation of FaultyRank algorithm
 
 # Getting Started
 
-The filesystem aging scripts has been implemented in Python 3.6.8. The rest of the codes is implemented in C/C++ and tested on CentOS Linux 7.9.2009 with g++ (GCC)  4.8.5.
+The filesystem aging scripts has been implemented in Python 3.6.8. The rest of the codes is implemented in C/C++ and tested on CentOS Linux 7.9.2009 with g++ (GCC) 4.8.5.
 
 ## Testbed Setup
 - We tested FaultyRank on a local Lustre cluster with 1 MDS/MGS server and 8 OSS servers.
@@ -51,9 +50,8 @@ The filesystem aging scripts has been implemented in Python 3.6.8. The rest of t
 # Design and Implementation
 FaultyRank have four major steps. A detailed description of each step is provided in the following sections.
 
-## Filesystem Aging
-We create a realistic Lustre instance by aging it. We are using Archive and NSF Metadata dataset released by USRC (Ultrascale Systems Research Center) from LANL National Lab.
-The LANL dataset have around 2PB of files and contains  file system walk of LANL's HPC systems. It contains detailed information like file sizes, creation time, modification time, UID/GID, anonymized file path, etc.
+## Step 1: Filesystem Aging
+We create a realistic Lustre instance by aging it. We are using Archive and NSF Metadata dataset released by USRC (Ultrascale Systems Research Center) from LANL National Lab. The LANL dataset have around 2PB of files and contains  file system walk of LANL's HPC systems. It contains detailed information like file sizes, creation time, modification time, UID/GID, anonymized file path, etc.
 
 We use the actual file paths to re-create the same directory structures in our local testbed. We also shrink the sizes of files in the 2PB file system without affecting the representativeness of generated Layout metadata. To do this, we set the stripe_size of our Lustre directories to be extremely small (i.e., 64KB) and stripe_count to be −1.
 
@@ -73,15 +71,14 @@ $ cd FaultyRank/client
 $ python fsaging.py -i [path_to_data/partitioned_data.txt]
 ```
 
-- Please follow [FileSystemAgingCustomized](https://github.com/SaishaKamat/Git_Personal/blob/master/FaultyRank_Personal/client/README.md) for customization.
+- Please follow [FileSystemAgingCustomized](https://github.com/DIR-LAB/FaultyRank/client/README.md) for customization.
 
-## Metadata Extraction
+## Step 2: Metadata Extraction
 Lustre metadata is stored in two places:
 1) The metadata like FID, LINKEA and LOVEA are stored in the Extended Attributes (EA) of the local inodes.
-2) The DIRENT metadata between the directory and its sub-directories or files are stored as the content of the directory.
+2) The DIRENT metadata between the directory and its sub-directories or files are stored as the content of the directory file.
 
-To extract Lustre metadata, we scan the extended attributes of inodes and the contents of directories of all MDS and OSS servers in our network. A partial graph is created on each server.
-This graph contains a list of edges, where each edge has a source vertex and destination vertex, each representing a Lustre directory, file, or stripe object. All the vertices have a unique global FID.
+To extract Lustre metadata, we scan the extended attributes of inodes and the contents of directories of all MDS and OSS servers in our network. A partial graph is created on each server. This graph contains a list of edges, where each edge has a source vertex and destination vertex, each representing a Lustre directory, file, or stripe object. All the vertices have a unique global FID.
 
 - Run the scripts in `FaultyRank/scanner/mds_scanner` on each MDS nodes to extract metadata from MDS node and create a partial graph.
 
@@ -97,9 +94,9 @@ $ cd FaultyRank/scanner/oss_scanner
 $ make
 ```
 
-- Please follow [MetadataExtractionMDSCustomized](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/SaishaKamat/Git_Personal/tree/master/FaultyRank_Personal/scanner/oss_scanner#readme) for customization.
+- Please follow [MetadataExtractionMDSCustomized](https://github.com/DIR-LAB/FaultyRank/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/DIR-LAB/FaultyRank/scanner/oss_scanner#readme) for customization.
 
-## Unified Graph Creation
+## Step 3: Create Unified Graph
 All the partial graphs created in the previous step are combined in one global graph on the main MDS server. The graph vertex IDs, which are 128-bit Lustre non-continuous FIDs are mapped to vertex GIDs from 0 to MAX_VERTEX_NUM-1.
 
 Move all the partial graphs created in the above step to `FaultyRank/aggregator`. Run the aggregator scripts to combine the partial graphs into one unified graph.
@@ -108,7 +105,6 @@ Move all the partial graphs created in the above step to `FaultyRank/aggregator`
 $ cd FaultyRank/aggregator
 $ make
 ```
-
 
 - Next we note the number of Vertices and Edges in the unified graph created.
 
@@ -122,7 +118,7 @@ $ tail -1 final_graph.txt
 $ wc -l final_graph.txt
 ```
 
-## Run FaultyRank Algorithm
+## Step 4: Run FaultyRank Algorithm
 Run FaultyRank algorithm on the unified graph created in the previous step.
 
 - Add the number of Vertices and Edges from the previous step and run FaultyRank algorithm.
@@ -138,7 +134,6 @@ $ ./faultyrank -N (# of Vertices) -E (# of Edges) -f /path_to_final_graph/final_
 $ cd FaultyRank/core
 $ ./faultyrank -N (# of Vertices) -E (# of Edges) -f /path_to_final_graph/final_graph.txt -u /path_to_final_unfilled/final_unfilled.txt
 ```
-
 
 # Test Experiment on a Pre-built Graph
 We have included a simple dataset that features a pre-existing graph with an incorporated inconsistency. This test dataset offers an easy means of gaining insight into the working of FaultyRank.
