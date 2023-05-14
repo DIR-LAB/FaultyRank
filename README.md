@@ -71,7 +71,7 @@ $ cd FaultyRank/client
 $ python fsaging.py -i [path_to_data/partitioned_data.txt]
 ```
 
-- Please follow [FileSystemAgingCustomized](https://github.com/DIR-LAB/FaultyRank/client/README.md) for customization.
+- Please follow [FileSystemAgingCustomized](https://github.com/DIR-LAB/FaultyRank/tree/main/client) for customization.
 
 ## Step 2: Metadata Extraction
 Lustre metadata is stored in two places:
@@ -94,7 +94,7 @@ $ cd FaultyRank/scanner/oss_scanner
 $ make
 ```
 
-- Please follow [MetadataExtractionMDSCustomized](https://github.com/DIR-LAB/FaultyRank/scanner/mds_scanner#readme) and [MetadataExtractionOSSCustomized](https://github.com/DIR-LAB/FaultyRank/scanner/oss_scanner#readme) for customization.
+- Please follow [MetadataExtractionMDSCustomized](https://github.com/DIR-LAB/FaultyRank/tree/main/scanner/mds_scanner) and [MetadataExtractionOSSCustomized](https://github.com/DIR-LAB/FaultyRank/tree/main/scanner/oss_scanner) for customization.
 
 ## Step 3: Create Unified Graph
 All the partial graphs created in the previous step are combined in one global graph on the main MDS server. The graph vertex IDs, which are 128-bit Lustre non-continuous FIDs are mapped to vertex GIDs from 0 to MAX_VERTEX_NUM-1.
