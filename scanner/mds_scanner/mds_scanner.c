@@ -68,7 +68,7 @@ int main(void) {
     int inode_size = super.s_inode_size; /*1024 for mds*/
     int max_inodes_per_group = super.s_inodes_per_group; /*32768 for mds*/
     int groups_in_flex_group = pow(2, super.s_log_groups_per_flex); /*16 for mds*/
-    //printf("block size: %d\n"
+    printf("block size: %d\n"
            "total inodes: %d\n"
            "free inodes: %d\n"
            " used inodes: %d\n"

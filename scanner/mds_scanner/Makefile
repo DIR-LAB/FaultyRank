@@ -2,8 +2,7 @@ CPP = gcc
 LINKERFLAG = -lm
 
 all:
-	$(CPP) mds_scanner.c -o mds_scanner $(LINKERFLAG)
-	./ mds_scanner
+	$(CPP) mds_scanner.c -o mds_scanner $(LINKERFLAG) -O3
 
 .PHONY: clean
 clean:
