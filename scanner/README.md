@@ -2,10 +2,10 @@
 
 To validate the idea of FaultyRank in real-world large-scale settings, we implement this prototype of FaultyRank on Lustre. The following figure shows the key components of the FaultyRank system, where running the scanner is the first step of file system checking.
 
-<figure>
-  <img align="middle" src="../resource/prototype.png" alt="The architecture of FaultyRank prototype on Lustre"/>
-  <figcaption>Figure: The architecture of FaultyRank prototype on Lustre.</figcaption>
-</figure>
+<p align="center">
+  <img width="50%" src="../resource/prototype.png" alt="The architecture of FaultyRank prototype on Lustre" />
+  <br/>Figure: The architecture of FaultyRank prototype on Lustre.
+</p>
 
 Lustre metadata is stored in two places:
 1) The metadata like `FID`, `LINKEA`, and `LOVEA` are stored in the `Extended Attributes (EA)` of the local inodes.
