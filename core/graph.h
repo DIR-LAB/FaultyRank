@@ -185,7 +185,7 @@ public:
   void BenchmarkFullGraphAccess() const {
     volatile int count = 0;
     auto start = std::chrono::high_resolution_clock::now();
-    for (NodeID u = 0; u < num_nodes_; u+=1) {
+    for (NodeID u = 0; u < num_nodes_; u += 1) {
       for (EdgeItem v: graph_[u].neighbors) {
         count += (v.paired_flag ? 1 : 0);
       }
@@ -193,7 +193,7 @@ public:
 
     auto end = std::chrono::high_resolution_clock::now();
     double duration = std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count();
-    cout << count << "# time to run the full access benchmark: " << duration/1000000000 << " seconds." << endl;
+    cout << count << "# time to run the full access benchmark: " << duration / 1000000000 << " seconds." << endl;
   }
 
 private:
